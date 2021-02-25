@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
@@ -32,7 +33,10 @@ public class MainActivity extends AppCompatActivity {
                     // change link
                     url = new URL("https://httpbin.org/basic-auth/bob/sympa");
                     HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
-                    String basicAuth = "Basic " + Base64.encodeToString("bob:sympa".getBytes(), Base64.NO_WRAP);
+                    // user credentials
+                    EditText username = findViewById(R.id.username);
+                    EditText password = findViewById(R.id.password);
+                    String basicAuth = "Basic " + Base64.encodeToString((username.toString() + ':' + password.getText()).getBytes(), Base64.NO_WRAP);
                     urlConnection.setRequestProperty ("Authorization", basicAuth);
                     // get the content of the page
                     try {
