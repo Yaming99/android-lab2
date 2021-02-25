@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 URL url;
                 try {
-                    // change to https
-                    url = new URL("https://www.android.com/");
+                    // change link
+                    url = new URL("https://httpbin.org/basic-auth/bob/sympa");
                     HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
                     // get the content of the page
                     try {
