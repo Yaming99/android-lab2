@@ -3,6 +3,7 @@ package com.example.myapplication.myapplication2;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 
@@ -31,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
                     // change link
                     url = new URL("https://httpbin.org/basic-auth/bob/sympa");
                     HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
+                    String basicAuth = "Basic " + Base64.encodeToString("bob:sympa".getBytes(), Base64.NO_WRAP);
+                    urlConnection.setRequestProperty ("Authorization", basicAuth);
                     // get the content of the page
                     try {
                         InputStream in = new BufferedInputStream(urlConnection.getInputStream());
