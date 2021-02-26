@@ -54,13 +54,10 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject jsonObject = new JSONObject(s);
                         res = jsonObject.getBoolean("authenticated");
                         // refresh the result
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                TextView result = findViewById(R.id.result);
-                                if (MainActivity.this.res) result.setText("Authenticated");
-                                else result.setText("Not authenticated");
-                            }
+                        runOnUiThread(() -> {
+                            TextView result = findViewById(R.id.result);
+                            if (MainActivity.this.res) result.setText("Authenticated");
+                            else result.setText("Not authenticated");
                         });
                     } finally {
                         urlConnection.disconnect();
