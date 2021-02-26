@@ -15,6 +15,12 @@ import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 
 public class AsyncFlickrJSONData extends AsyncTask<String, Void, JSONObject> {
+    private AsyncBitmapDownloader asyncBmp;
+
+    public AsyncFlickrJSONData(AsyncBitmapDownloader asyncBmp) {
+        this.asyncBmp = asyncBmp;
+    }
+
     // method similar to the previous one in MainActivity
     @Override
     protected JSONObject doInBackground(String... params) {
@@ -44,6 +50,7 @@ public class AsyncFlickrJSONData extends AsyncTask<String, Void, JSONObject> {
             // get the image url
             String imageUrl = result.getJSONArray("items").getJSONObject(0).getJSONObject("media").getString("m");
             Log.i("JFL", imageUrl);
+            asyncBmp.execute(imageUrl);
         } catch (JSONException e) {
             e.printStackTrace();
         }
