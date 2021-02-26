@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Flickr app</string>
+    <string name="getimage">Get an image</string>
 </resources>
