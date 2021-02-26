@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
 
@@ -45,13 +44,10 @@ public class MyAdapter extends BaseAdapter {
         RequestQueue queue = MySingleton.getInstance(parent.getContext()).getRequestQueue();
         if(convertView == null) {
             convertView = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.textviewlayout, parent, false);
+                    .inflate(R.layout.bitmaplayout, parent, false);
         }
         // get the image url
         String imageUrl = (String) getItem(position);
-        // get the text view, set url
-        TextView url = convertView.findViewById(R.id.urlText);
-        url.setText(imageUrl);
         return convertView;
     }
 }
