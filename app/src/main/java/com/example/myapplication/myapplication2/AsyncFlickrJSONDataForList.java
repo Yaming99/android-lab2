@@ -58,6 +58,8 @@ public class AsyncFlickrJSONDataForList extends AsyncTask<String, Void, JSONObje
                 // add url
                 adapter.add(imageUrl);
             }
+            // notify the changes to the adapter
+            adapter.notifyDataSetChanged();
         } catch (JSONException e) {
             e.printStackTrace();
         }
