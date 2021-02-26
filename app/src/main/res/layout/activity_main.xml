@@ -36,4 +36,17 @@
         tools:srcCompat="@tools:sample/avatars"
         tools:visibility="visible" />
 
+    <Button
+        android:id="@+id/listBtn"
+        android:layout_width="109dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="155dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="147dp"
+        android:onClick="seeList"
+        android:text="@string/seeList"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/getImgBtn" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

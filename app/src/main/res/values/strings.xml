@@ -2,4 +2,5 @@
     <string name="app_name">Flickr app</string>
     <string name="getimage">Get an image</string>
     <string name="imgDesc">Flickr Image</string>
+    <string name="seeList">See list</string>
 </resources>
