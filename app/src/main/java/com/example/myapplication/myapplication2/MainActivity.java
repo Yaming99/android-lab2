@@ -7,6 +7,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
@@ -43,6 +44,11 @@ public class MainActivity extends AppCompatActivity {
                         InputStream in = new BufferedInputStream(urlConnection.getInputStream());
                         String s = readStream(in);
                         Log.i("JFL", s);
+                        // refresh the result
+                        runOnUiThread(() -> {
+                            TextView result = findViewById(R.id.result);
+                            result.setText("My result here");
+                        });
                     } finally {
                         urlConnection.disconnect();
                     }
