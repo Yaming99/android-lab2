@@ -1,13 +1,28 @@
 package com.example.myapplication.myapplication2;
 
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import java.util.Vector;
+
 public class MyAdapter extends BaseAdapter {
+
+    private Vector<String> imageUrls;
+
+    public MyAdapter() {
+        imageUrls = new Vector<>();
+    }
+
+    // add url
+    public void add(String url) {
+        imageUrls.add(url);
+    }
+
     @Override
     public int getCount() {
-        return 0;
+        return imageUrls.size();
     }
 
     @Override
@@ -22,6 +37,7 @@ public class MyAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        Log.i("JFL", "TODO");
         return null;
     }
 }
