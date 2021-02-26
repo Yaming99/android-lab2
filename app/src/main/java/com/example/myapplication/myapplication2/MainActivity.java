@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -18,6 +21,9 @@ import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 
 public class MainActivity extends AppCompatActivity {
+
+    // authentication state
+    private boolean res;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,22 +43,29 @@ public class MainActivity extends AppCompatActivity {
                     // user credentials
                     EditText username = findViewById(R.id.username);
                     EditText password = findViewById(R.id.password);
-                    String basicAuth = "Basic " + Base64.encodeToString((username.toString() + ':' + password.getText()).getBytes(), Base64.NO_WRAP);
+                    String basicAuth = "Basic " + Base64.encodeToString((username.getText() + ":" + password.getText()).getBytes(), Base64.NO_WRAP);
                     urlConnection.setRequestProperty ("Authorization", basicAuth);
                     // get the content of the page
                     try {
                         InputStream in = new BufferedInputStream(urlConnection.getInputStream());
                         String s = readStream(in);
                         Log.i("JFL", s);
+                        // reinstantiate the string as a JSONObject
+                        JSONObject jsonObject = new JSONObject(s);
+                        res = jsonObject.getBoolean("authenticated");
                         // refresh the result
-                        runOnUiThread(() -> {
-                            TextView result = findViewById(R.id.result);
-                            result.setText("My result here");
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                TextView result = findViewById(R.id.result);
+                                if (MainActivity.this.res) result.setText("Authenticated");
+                                else result.setText("Not authenticated");
+                            }
                         });
                     } finally {
                         urlConnection.disconnect();
                     }
-                } catch (IOException e) {
+                } catch (IOException | JSONException e) {
                     e.printStackTrace();
                 }
             }
