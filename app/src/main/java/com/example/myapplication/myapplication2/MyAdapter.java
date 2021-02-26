@@ -18,7 +18,7 @@ public class MyAdapter extends BaseAdapter {
     // add url
     public void add(String url) {
         imageUrls.add(url);
-        Log.i("JFL", "Adding it to the adapter url: " + url);
+        Log.i("JFL", "Adding to adapter url: " + url);
     }
 
     @Override
