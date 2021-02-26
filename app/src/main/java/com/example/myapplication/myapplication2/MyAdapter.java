@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
 import com.android.volley.toolbox.ImageRequest;
 
 import java.util.Vector;
@@ -51,7 +52,16 @@ public class MyAdapter extends BaseAdapter {
         }
         // get the image url
         String imageUrl = (String) getItem(position);
-        ImageRequest request = new ImageRequest(imageUrl, null, 300, 300, ImageView.ScaleType.CENTER, Bitmap.Config.RGB_565,null);
+        // get view container
+        ImageView image = convertView.findViewById(R.id.imageBitMap);
+        // response listener
+        Response.Listener<Bitmap> resp_listener = bmp -> {
+            // set image in the view
+            image.setImageBitmap(bmp);
+        };
+        ImageRequest request = new ImageRequest(imageUrl, resp_listener, 300, 300, ImageView.ScaleType.CENTER, Bitmap.Config.RGB_565,null);
+        // add the request to the queue
+        queue.add(request);
         return convertView;
     }
 }

@@ -8,10 +8,10 @@
 
     <ImageView
         android:id="@+id/imageBitMap"
-        android:layout_width="265dp"
-        android:layout_height="263dp"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="54dp"
+        android:layout_width="404dp"
+        android:layout_height="307dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
